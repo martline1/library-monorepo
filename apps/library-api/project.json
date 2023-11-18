@@ -1,0 +1,57 @@
+{
+  "name": "library-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/library-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/library-api",
+        "main": "apps/library-api/src/main.ts",
+        "tsConfig": "apps/library-api/tsconfig.app.json",
+        "assets": ["apps/library-api/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/library-api/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "library-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "library-api:build:development"
+        },
+        "production": {
+          "buildTarget": "library-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/library-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/library-api/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
