@@ -14,7 +14,6 @@
         "outputPath": "dist/apps/library-api",
         "main": "apps/library-api/src/main.ts",
         "tsConfig": "apps/library-api/tsconfig.app.json",
-        "assets": ["apps/library-api/src/assets"],
         "isolatedConfig": true,
         "webpackConfig": "apps/library-api/webpack.config.js"
       },
